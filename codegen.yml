@@ -1,0 +1,7 @@
+overwrite: true
+generates: 
+  graphql/generated/types.ts:
+    schema: 
+      - 'stepZen/curl/index.graphql'
+    plugins:
+      - 'typescript'

@@ -1,0 +1,118 @@
+type Current {
+  clouds: Int
+  dew_point: Float
+  dt: Int!
+  feels_like: Float
+  humidity: Int
+  pressure: Int
+  sunrise: Int!
+  sunset: Int!
+  temp: Float
+  uvi: Int
+  visibility: Int
+  weather: [WeatherEntry!]!
+  wind_deg: Int
+  wind_gust: Float
+  wind_speed: Float
+}
+
+type DailyEntry {
+  clouds: Int!
+  dew_point: Float!
+  dt: Int!
+  feels_like: FeelsLike!
+  humidity: Int!
+  moon_phase: Float!
+  moonrise: Int!
+  moonset: Int!
+  pop: Float!
+  pressure: Int!
+  rain: Float
+  summary: String!
+  sunrise: Int!
+  sunset: Int!
+  temp: Temp!
+  uvi: Float!
+  weather: [Weather2Entry]!
+  wind_deg: Int!
+  wind_gust: Float!
+  wind_speed: Float!
+}
+
+type FeelsLike {
+  day: Float
+  eve: Float
+  morn: Float
+  night: Float
+}
+
+type HourlyEntry {
+  clouds: Int
+  dew_point: Float
+  dt: Int!
+  feels_like: Float
+  humidity: Int!
+  pop: Float!
+  pressure: Int
+  """
+  Field "rain" typed as JSON since none of its fields is a valid GraphQL identifier ["1h"]
+  """
+  # rain: JSON
+  temp: Float!
+  uvi: Float!
+  visibility: Int
+  weather: [Weather1Entry!]!
+  wind_deg: Int
+  wind_gust: Float
+  wind_speed: Float
+}
+
+type Root {
+  current: Current!
+  daily: [DailyEntry!]!
+  hourly: [HourlyEntry!]!
+  lat: Float
+  lon: Float
+  timezone: String!
+  timezone_offset: Int
+}
+
+type Temp {
+  day: Float
+  eve: Float
+  max: Float
+  min: Float
+  morn: Float
+  night: Float
+}
+
+type Weather1Entry {
+  description: String!
+  icon: String
+  id: Int
+  main: String
+}
+
+type Weather2Entry {
+  description: String
+  icon: Float
+  id: Int
+  main: String
+}
+
+type WeatherEntry {
+  description: String!
+  icon: String!
+  id: Int
+  main: String
+}
+
+type Query {
+  myQuery(
+    appid: String
+    exclude: String
+    lat: String
+    lon: String
+    units: String
+  ): Root @rest(endpoint: "https://api.openweathermap.org/data/3.0/onecall")
+}
