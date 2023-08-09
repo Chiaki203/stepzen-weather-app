@@ -1,1 +1,1 @@
-export const GPTWeatherResults = `GPTWeatherResults`
+export const GPTWeatherResponse = `GPTWeatherResponse`

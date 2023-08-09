@@ -9,7 +9,7 @@ import RainChart from '@/components/RainChart'
 import HumidityChart from '@/components/HumidityChart'
 import { cleanData } from '@/lib/cleanData'
 import getBasePath from '@/lib/getBasePath'
-import { GPTWeatherResults } from '@/lib/GPTResult'
+import { GPTWeatherResponse } from '@/lib/GPTResult'
 
 export const revalidate = 60
 
@@ -68,7 +68,7 @@ async function WeatherPage({params: {city, lat, long}}: Props) {
             </p>
           </div>
           <div className='m-2 mb-10'>
-            <CalloutCard  message={GPTWeatherResults}/>
+            <CalloutCard  message={GPTWeatherResponse}/>
           </div>
           <div className='grid grid-cols-1 xl:grid-cols-2 gap-5 m-2'>
             <StatCard
